@@ -1,20 +1,29 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-
 'use strict';
 
-const express = require('express');
+import express from 'express';
 
-// Constants
+// Function to square a number
+export function square(number) {
+    return number * number;
+}
+
+// Setting up the server
 const PORT = 3000;
 const HOST = '0.0.0.0';
 
-// App
 const app = express();
+
+app.get('/square', (req, res) => {
+    const number = parseFloat(req.query.number);
+    if (isNaN(number)) {
+        res.status(400).send('NÚMERO INVÁLIDO');
+    } else {
+        res.send(`El cuadrado del número ${number} es ${square(number)}\n`);
+    }
+});
+
 app.get('/', (req, res) => {
-	res.send('Hello remote world!\n');
+    res.send(`Dirigite a "/square?number=" y  coloca el número del cual quieras obtener su cuadrado`);   
 });
 
 app.listen(PORT, HOST);
