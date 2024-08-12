@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha"
+    "test": "npx mocha"
   },
   "dependencies": {
     "express": "^4.19.2"
