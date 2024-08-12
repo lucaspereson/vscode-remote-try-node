@@ -26,5 +26,9 @@ app.get('/', (req, res) => {
     res.send(`Dirigite a "/square?number=" y  coloca el número del cual quieras obtener su cuadrado`);   
 });
 
-app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, HOST, () => {
+        console.log(`Running on http://${HOST}:${PORT}`);
+    });
+}
+
